@@ -1,4 +1,5 @@
 import os
+import math
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 import cv2
@@ -121,7 +122,7 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 def run_on_general_data():
-    img_src = glob.glob("./image/New Hazy dataset/*.png")      # Enter the image directory
+    img_src = glob.glob("./image/New-Hazy-dataset/*.png")      # Enter the image directory
 
     cnt=0
     for img_path in img_src:
@@ -134,7 +135,7 @@ def run_on_general_data():
         # ori_image_resized = cv2.resize(ori_image, (img_size,img_size))
         # cv2.imwrite(f"{img_name}_resized.jpg", ori_image_resized)
 
-        base_path_hazyImg = './image/New Hazy dataset/'
+        base_path_hazyImg = './image/New-Hazy-dataset/'
         base_path_result = 'patchMap/'
         # imgname = 'waterfall.tif'
         save_dir = './result/'
@@ -174,7 +175,7 @@ def run_on_general_data():
 
 
 def run_on_test_data():
-    img_src = glob.glob("./image/New Hazy dataset/*.png")      # Enter the image directory
+    img_src = glob.glob("./image/New-Hazy-dataset/*.png")      # Enter the image directory
 
     cnt=0
     for img_path in img_src:
@@ -187,7 +188,7 @@ def run_on_test_data():
         # ori_image_resized = cv2.resize(ori_image, (img_size,img_size))
         # cv2.imwrite(f"{img_name}_resized.jpg", ori_image_resized)
 
-        base_path_hazyImg = './image/New Hazy dataset/'
+        base_path_hazyImg = './image/New-Hazy-dataset/'
         base_path_result = 'patchMap/'
         # imgname = 'waterfall.tif'
         save_dir = './result/'
