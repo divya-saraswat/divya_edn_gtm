@@ -227,5 +227,5 @@ def run_on_test_data():
 
 if __name__ == "__main__":
     run_on_general_data()
-    run_on_test_data()
+#     run_on_test_data()
     print("Done!")
