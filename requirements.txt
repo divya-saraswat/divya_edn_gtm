@@ -110,7 +110,6 @@ retworkx==0.9.0
 rsa==4.0
 scikit-image==0.15.0
 scikit-learn==0.21.3
-scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy_1629411471490/work
 seaborn==0.10.0
 Send2Trash==1.5.0
 six==1.15.0
