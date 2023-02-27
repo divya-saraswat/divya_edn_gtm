@@ -1,11 +1,11 @@
 import os
-import math
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 import cv2
 import glob
 import numpy as np
 from PIL import Image
+import math
 
 from core.utils import load_image, deprocess_image, preprocess_image
 from core.networks import unet_spp_large_swish_generator_model
@@ -140,9 +140,20 @@ def run_on_general_data():
         # imgname = 'waterfall.tif'
         save_dir = './result/'
         modelDir = './weights/PMS-Net.h5'
+        labelDir = "./ground_truth/ground_truth/"
         # print(img_name)
         start_testing(base_path_hazyImg, base_path_result, img_name, save_dir, modelDir)        
         out_path = save_dir + 'py_recover_' + str(img_name.split('.')[0]) + '.jpg'
+        filename = labelDir + str(img_name.split('.')[0]) + '.JPG'
+        if not os.path.exists(filename):
+            # try searching for file with ".jpg" extension
+            alt_filename = filename.lower().replace(".JPG", ".jpg")
+            if os.path.exists(alt_filename):
+                filename = alt_filename
+            else:
+                print("File not found.")
+        # print(label_path)
+        label = cv2.imread(filename)
         t = cv2.imread(out_path)
         t = cv2.cvtColor(t, cv2.COLOR_BGR2GRAY)
         # t = estimate_transmission(ori_image)
@@ -162,10 +173,11 @@ def run_on_general_data():
         # cv2.imwrite(f"{img_name}_resized_pred.jpg", pred_image_resized)
 
         de_test = cv2.resize(de_test, (w, h))
+        ground_truth_image = cv2.resize(label, (w, h))
 
         rgb_de_test = cv2.cvtColor(de_test, cv2.COLOR_BGR2RGB)
-        print("PSNR value: {}".format(calculate_psnr(ori_image_, rgb_de_test)))
-        print("SSIM value: {}".format(calculate_ssim(ori_image_, rgb_de_test)))
+        print("PSNR value: {}".format(calculate_psnr(ground_truth_image, rgb_de_test)))
+        print("SSIM value: {}".format(calculate_ssim(ground_truth_image, rgb_de_test)))
         cv2.imwrite(f"{output_dir}/{img_name}.jpg", rgb_de_test)
 
         cnt+=1
@@ -175,7 +187,7 @@ def run_on_general_data():
 
 
 def run_on_test_data():
-    img_src = glob.glob("./image/New-Hazy-dataset/*.png")      # Enter the image directory
+    img_src = glob.glob("./image/New Hazy dataset/*.png")      # Enter the image directory
 
     cnt=0
     for img_path in img_src:
@@ -188,7 +200,7 @@ def run_on_test_data():
         # ori_image_resized = cv2.resize(ori_image, (img_size,img_size))
         # cv2.imwrite(f"{img_name}_resized.jpg", ori_image_resized)
 
-        base_path_hazyImg = './image/New-Hazy-dataset/'
+        base_path_hazyImg = './image/New Hazy dataset/'
         base_path_result = 'patchMap/'
         # imgname = 'waterfall.tif'
         save_dir = './result/'
