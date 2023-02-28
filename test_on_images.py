@@ -176,6 +176,7 @@ def run_on_general_data():
         ground_truth_image = cv2.resize(label, (w, h))
 
         rgb_de_test = cv2.cvtColor(de_test, cv2.COLOR_BGR2RGB)
+        ground_truth_image = cv2.cvtColor(ground_truth_image, cv2.COLOR_BGR2RGB)
         print("PSNR value: {}".format(calculate_psnr(ground_truth_image, rgb_de_test)))
         print("SSIM value: {}".format(calculate_ssim(ground_truth_image, rgb_de_test)))
         cv2.imwrite(f"{output_dir}/{img_name}.jpg", rgb_de_test)
