@@ -10,7 +10,7 @@ import matplotlib.image
 def start_testing(base_path_hazyImg, base_path_result, imgname, save_dir, modelDir):
     print("Process image: ", imgname)
 
-    image = cv2.imread(base_path_hazyImg + imgname + ".png")
+    image = cv2.imread(base_path_hazyImg + imgname + ".jpg")
     if image.shape[0] != 480 or image.shape[1] != 640:
         print('resize image tp 640*480')
         image = cv2.resize(image, (640, 480))
@@ -30,7 +30,7 @@ def start_testing(base_path_hazyImg, base_path_result, imgname, save_dir, modelD
 def start_testing_final_images(base_path_hazyImg, base_path_result, imgname, save_dir, modelDir):
     print("Process image: ", imgname)
 
-    image = cv2.imread(base_path_hazyImg + imgname + ".png")
+    image = cv2.imread(base_path_hazyImg + imgname + ".jpg")
     if image.shape[0] != 480 or image.shape[1] != 640:
         print('resize image tp 640*480')
         image = cv2.resize(image, (640, 480))
@@ -48,7 +48,7 @@ def start_testing_final_images(base_path_hazyImg, base_path_result, imgname, sav
     matplotlib.image.imsave(savename_result, result_arr)
 
 if __name__ == "__main__":
-    base_path_hazyImg = 'image/'
+    base_path_hazyImg = 'image'
     base_path_result = 'patchMap/'
     imgname = 'waterfall.tif'
     save_dir = 'result/'
