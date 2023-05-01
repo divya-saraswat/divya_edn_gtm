@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from core.utils import load_image, deprocess_image, preprocess_image
 from core.networks import unet_spp_large_swish_generator_model
 from core.dcp import estimate_transmission
-from test import start_testing, start_testing_final_images
+# from ./test import start_testing, start_testing_final_images
 
 img_size = 512
 
@@ -128,6 +128,7 @@ def run_on_general_data():
     for img_path in img_src:
 
         img_name = get_file_name(img_path)
+        print(img_path)
         ori_image = cv2.imread(img_path)
         ori_image_ = ori_image.copy()
         h, w, _ = ori_image.shape
@@ -140,20 +141,20 @@ def run_on_general_data():
         # imgname = 'waterfall.tif'
         save_dir = './result/'
         modelDir = './weights/PMS-Net.h5'
-        labelDir = "./ground_truth/ground_truth/"
+        # labelDir = "./ground_truth/ground_truth/"
         # print(img_name)
         start_testing(base_path_hazyImg, base_path_result, img_name, save_dir, modelDir)        
         out_path = save_dir + 'py_recover_' + str(img_name.split('.')[0]) + '.jpg'
-        filename = labelDir + str(img_name.split('.')[0]) + '.JPG'
-        if not os.path.exists(filename):
-            # try searching for file with ".jpg" extension
-            alt_filename = filename.lower().replace(".JPG", ".jpg")
-            if os.path.exists(alt_filename):
-                filename = alt_filename
-            else:
-                print("File not found.")
+        # filename = labelDir + str(img_name.split('.')[0]) + '.JPG'
+        # if not os.path.exists(filename):
+        #     # try searching for file with ".jpg" extension
+        #     alt_filename = filename.lower().replace(".JPG", ".jpg")
+        #     if os.path.exists(alt_filename):
+        #         filename = alt_filename
+        #     else:
+        #         print("File not found.")
         # print(label_path)
-        label = cv2.imread(filename)
+        # label = cv2.imread(filename)
         t = cv2.imread(out_path)
         t = cv2.cvtColor(t, cv2.COLOR_BGR2GRAY)
         # t = estimate_transmission(ori_image)
@@ -173,12 +174,12 @@ def run_on_general_data():
         # cv2.imwrite(f"{img_name}_resized_pred.jpg", pred_image_resized)
 
         de_test = cv2.resize(de_test, (w, h))
-        ground_truth_image = cv2.resize(label, (w, h))
+        # ground_truth_image = cv2.resize(label, (w, h))
 
         rgb_de_test = cv2.cvtColor(de_test, cv2.COLOR_BGR2RGB)
-        ground_truth_image = cv2.cvtColor(ground_truth_image, cv2.COLOR_BGR2RGB)
-        print("PSNR value: {}".format(calculate_psnr(ground_truth_image, rgb_de_test)))
-        print("SSIM value: {}".format(calculate_ssim(ground_truth_image, rgb_de_test)))
+        # ground_truth_image = cv2.cvtColor(ground_truth_image, cv2.COLOR_BGR2RGB)
+        # print("PSNR value: {}".format(calculate_psnr(ground_truth_image, rgb_de_test)))
+        # print("SSIM value: {}".format(calculate_ssim(ground_truth_image, rgb_de_test)))
         plt.figure()
         plt.imshow(rgb_de_test)
         plt.axis('off')
@@ -198,6 +199,7 @@ def run_on_test_data():
     for img_path in img_src:
 
         img_name = get_file_name(img_path)
+        # print(img_path)
         ori_image = cv2.imread(img_path)
         ori_image_ = ori_image.copy()
         h, w, _ = ori_image.shape
