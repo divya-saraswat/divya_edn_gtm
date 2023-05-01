@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from core.utils import load_image, deprocess_image, preprocess_image
 from core.networks import unet_spp_large_swish_generator_model
 from core.dcp import estimate_transmission
-# from ./test import start_testing, start_testing_final_images
+from test import start_testing, start_testing_final_images
 
 img_size = 512
 
