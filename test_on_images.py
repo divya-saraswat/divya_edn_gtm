@@ -122,7 +122,7 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 def run_on_general_data():
-    img_src = glob.glob("./image/to_recover_images/*.png")      # Enter the image directory
+    img_src = glob.glob("./image/to_recover_images/*.jpg")      # Enter the image directory
 
     cnt=0
     for img_path in img_src:
@@ -192,7 +192,7 @@ def run_on_general_data():
 
 
 def run_on_test_data():
-    img_src = glob.glob("./image/to_recover_images/*.png")      # Enter the image directory
+    img_src = glob.glob("./image/to_recover_images/*.jpg")      # Enter the image directory
 
     cnt=0
     for img_path in img_src:
