@@ -135,7 +135,7 @@ def run_on_general_data():
         # ori_image_resized = cv2.resize(ori_image, (img_size,img_size))
         # cv2.imwrite(f"{img_name}_resized.jpg", ori_image_resized)
 
-        base_path_hazyImg = './image/New-Hazy-dataset/'
+        base_path_hazyImg = './image/to_recover_images/'
         base_path_result = 'patchMap/'
         # imgname = 'waterfall.tif'
         save_dir = './result/'
@@ -205,7 +205,7 @@ def run_on_test_data():
         # ori_image_resized = cv2.resize(ori_image, (img_size,img_size))
         # cv2.imwrite(f"{img_name}_resized.jpg", ori_image_resized)
 
-        base_path_hazyImg = './image/New Hazy dataset/'
+        base_path_hazyImg = './image/to_recover_images/'
         base_path_result = 'patchMap/'
         # imgname = 'waterfall.tif'
         save_dir = './result/'
